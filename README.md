@@ -9,7 +9,7 @@
 
 1. Clone or download repository.
 
-![cloneimage](https://github.com/larry-noriega/JS-Face_Detection/blob/main/assets/img/Clone.png?raw=true)
+![cloneimage](https://github.com/larry-noriega/JS-Face_Detection/blob/master/assets/img/Clone.png?raw=true)
 
 or
 
@@ -22,7 +22,7 @@ git clone https://github.com/larry-noriega/JS-Face_Detection.git
 
 ![vscode](https://user-images.githubusercontent.com/35271042/118224532-3842c400-b438-11eb-923d-a5f66fa6785a.png)
 
-3. install & activate recommended extensions
+3. Install & activate recommended extensions
    
 ![recomended_extensions](https://tattoocoder.com/content/images/2019/08/Screen-Shot-2019-08-14-at-2.53.11-PM.png)
 
@@ -48,9 +48,9 @@ Video eventListener for `play` fires up too early before the video is fully load
 (tested on Debian [Firefox] and Windows [Chrome, Firefox]). Replaced by `playing` event, which fires up when the media has enough data to start playing.
 
 ## Log
-
+ - 14/08/2021:  Modern browsers compatibility.
 - 12/07/2020: Bug Fixes:
-  - navigator.getUserMedia deprecated in modern browsers.
+  - `navigator.getUserMedia` deprecated in modern browsers.
   - `play` event: Low-ending devices bug.
 - 07/07/2020: Instructions & VScode extensions recommendations. 
 - 09/04/2019: Innitial Commit.

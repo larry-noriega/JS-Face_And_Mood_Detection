@@ -1,5 +1,13 @@
 const video = document.getElementById('video')
 
+var constraints = {
+  audio: false,
+  video: {
+    width: 720,
+    height: 560
+  }
+};
+
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/js/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/js/models'),
@@ -8,11 +16,17 @@ Promise.all([
 ]).then(startVideo)
 
 function startVideo() {
-  navigator.mediaDevices.getUserMedia(
-    { video: {} },
-    stream => video.srcObject = stream,
-    err => console.error(err)
-  )
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(function (mediaStream) {
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = function (e) {
+        video.play();
+      };
+    })
+    .catch(function (err) {
+      console.log(err.name + ": " + err.message);
+    });
 }
 
 video.addEventListener('play', () => {
@@ -20,6 +34,7 @@ video.addEventListener('play', () => {
   document.body.append(canvas)
   const displaySize = { width: video.width, height: video.height }
   faceapi.matchDimensions(canvas, displaySize)
+
   setInterval(async () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
