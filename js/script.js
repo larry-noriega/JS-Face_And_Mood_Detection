@@ -15,11 +15,33 @@ Promise.all([
   faceapi.nets.faceExpressionNet.loadFromUri('/js/models')
 ]).then(startVideo)
 
+if (navigator.mediaDevices === undefined) {
+  navigator.mediaDevices = {};
+}
+
+if (navigator.mediaDevices.getUserMedia === undefined) {
+  navigator.mediaDevices.getUserMedia = function (constraints) {
+    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    if (!getUserMedia) {
+      return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+    }
+
+    return new Promise(function(resolve, reject) {
+      getUserMedia.call(navigator, constraints, resolve, reject);
+    });
+  }
+}
+
+
 function startVideo() {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then(function (mediaStream) {
-      video.srcObject = mediaStream;
+      if ("srcObject" in video) {
+        video.srcObject = mediaStream;
+      }  else {
+        video.src = window.URL.createObjectURL(mediaStream);
+      }
       video.onloadedmetadata = function (e) {
         video.play();
       };

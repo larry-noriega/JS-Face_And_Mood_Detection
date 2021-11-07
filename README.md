@@ -48,7 +48,10 @@ Video eventListener for `play` fires up too early before the video is fully load
 (tested on Debian [Firefox] and Windows [Chrome, Firefox]). Replaced by `playing` event, which fires up when the media has enough data to start playing.
 
 ## Log
- - 14/08/2021:  Modern browsers compatibility.
+- 06/11/2021: Updates:
+  - Old browsers compatibility.
+  - Minify version added.
+- 14/08/2021: Modern browsers compatibility.
 - 12/07/2020: Bug Fixes:
   - `navigator.getUserMedia` deprecated in modern browsers.
   - `play` event: Low-ending devices bug.
