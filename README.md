@@ -14,7 +14,7 @@
 or
 
 ``` bash
-git clone https://github.com/larry-noriega/JS-Face_Detection.git
+git clone https://github.com/larry-noriega/JS-Face_And_Mood_Detection.git
 ```
 ### Start the Project
 
